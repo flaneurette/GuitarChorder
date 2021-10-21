@@ -3,6 +3,7 @@ try:
 except:
     RPR_ShowConsoleMsg('Could not load reaper_python!')
 try:
+    sys.path.append(RPR_GetResourcePath() + '/Scripts')
     from sws_python import *
 except:
     RPR_ShowConsoleMsg('Could not load sws_python!')
@@ -23,7 +24,6 @@ except:
     RPR_ShowConsoleMsg('Could not import SYS!')
     
 
-	
 # Fingerpick patterns
 
 fingerPick = [
@@ -476,8 +476,6 @@ GuitarChordsG = [
     ['G7#5',43,47,50,55,59]
 ]
 
-
-
 strumPat = ('Even','DOWN Slow','DOWN Fast','UP Slow','UP Fast','Fingerpick 1','Fingerpick 2','Fingerpick 3','Fingerpick 4','Fingerpick 5','Fingerpick 6','Fingerpick 7','Fingerpick 8','Fingerpick 9','Fingerpick 10','Fingerpick 11','Fingerpick 12')
 humanizePat = ('None','Attack','Velocity')
 
@@ -530,11 +528,11 @@ class G(object):
         
         if sys.platform == 'win32' or sys.platform.startswith('win') or sys.platform == 'cygwin':
             paddOS = 30
-            h = 330
-            w = 300
+            h = 300
+            w = 270
             try:
                 style = ttk.Style()
-                #style.theme_use('default')
+                style.theme_use('default')
             except:
                 h = 310
                 w = 275
@@ -572,7 +570,7 @@ class G(object):
 
         # Widget Initialization
         
-        root.configure(background='#000000')
+        root.configure(background='#c9cfcf')
         
         
         self.fram = tkinter.LabelFrame(root)
@@ -589,11 +587,11 @@ class G(object):
         ) 
         
         s = ttk.Style()
-        s.configure('TCombobox', fieldbackground='#666666')
-        self._label_2.configure(background='#333333')
-        self._label_3.configure(background='#333333')
-        self._label_4.configure(background='#333333')
-        self.fram.configure(background='#333333')
+        s.configure('TCombobox', fieldbackground='#ffffff')
+        self._label_2.configure(background='#dee4e4')
+        self._label_3.configure(background='#dee4e4')
+        self._label_4.configure(background='#dee4e4')
+        self.fram.configure(background='#dee4e4')
         
         self.ChordA1 = ttk.Combobox(root, width=8,  height=8, values=entriesStructuresA
         )
@@ -618,7 +616,7 @@ class G(object):
         self.ChordF1.current(0)
         self.ChordG1.current(0)
         
-		
+
         
         self._button_1 = ttk.Button(root, text = "Draw chords", command=self._draw_midi
         )
@@ -652,7 +650,6 @@ class G(object):
         self.Pat7 = ttk.Combobox(root, width=12, height=8,  values=strumPat
         )
         
-		
         self.Pat1.current(0)
         self.Pat2.current(0)
         self.Pat3.current(0)
@@ -660,8 +657,8 @@ class G(object):
         self.Pat5.current(0)
         self.Pat6.current(0)
         self.Pat7.current(0)
-	
-		
+
+        
         # Geometry Management
         self.fram.grid(
             in_    = root,
@@ -675,7 +672,7 @@ class G(object):
             rowspan = 9,
             sticky = "news"
         )
-		
+        
         self._label_2.grid(
             in_    = self.fram,
             column = 1,
@@ -960,8 +957,8 @@ class G(object):
         self.PosG1.grid(
             in_    = self.fram,
             column = 1,
-            columnspan = 1,
             row    = 9,
+            columnspan = 1,
             ipadx = 0,
             ipady = 0,
             padx = 10,
@@ -998,7 +995,6 @@ class G(object):
         root.grid_columnconfigure(2, weight = 0, minsize = 80, pad = 0)
         root.grid_columnconfigure(3, weight = 0, minsize = 80, pad = 0)
         
-		
     def _draw_midi(self):
         
         channel = 1
@@ -1668,4 +1664,3 @@ def main():
     root.mainloop()
 
 if __name__ == '__main__': main()
-
